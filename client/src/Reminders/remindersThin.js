@@ -13,44 +13,6 @@ class remindersThin extends Component {
   }
 
   render() {
-    // const reminders = [
-    //   {
-    //     id: "1",
-    //     description: "Do Laundry",
-    //     status: "Not Complete",
-    //     creationDate: "Day1"
-    //   },
-    //   {
-    //     id: "2",
-    //     description: "Go to store",
-    //     status: "Complete",
-    //     creationDate: "Day2"
-    //   },
-    //   {
-    //     id: "3",
-    //     description: "Do Laundry",
-    //     status: "Not Complete",
-    //     creationDate: "Day1"
-    //   },
-    //   {
-    //     id: "4",
-    //     description: "",
-    //     status: "",
-    //     creationDate: ""
-    //   },
-    //   {
-    //     id: "5",
-    //     description: "",
-    //     status: "",
-    //     creationDate: ""
-    //   },
-    //   {
-    //     id: "6",
-    //     description: "",
-    //     status: "",
-    //     creationDate: ""
-    //   }
-    // ];
     return (
       <div>
         <table>

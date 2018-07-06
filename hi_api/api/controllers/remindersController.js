@@ -7,21 +7,17 @@ var mongoose = require('mongoose'),
 exports.list_all_tasks = function (req, res) {
   Task.find({}, function (err, task) {
     if (err) { res.send(err); }
-    console.log(task);
-    res.send([{
-      id: "1",
-      description: "Do Laundry",
-      status: true,
-      creationDate: "Day1"
-    }]);
+    res.send(task);
   });
 };
 
 exports.create_a_task = function (req, res) {
   var new_task = new Task(req.body);
+  console.log(req);
   new_task.save(function (err, task) {
     if (err)
       res.send(err);
+    console.log(task);
     res.json(task);
   });
 };

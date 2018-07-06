@@ -7,19 +7,15 @@ class reminderRow extends Component {
     reminder: object.isRequired
   }
 
-  submitReminder = () => {
-    this.setState({ isAddingReminder: !this.state.isAddingReminder });
-    this.addReminder();
-}
+  toggleReminder = () => {
+  }
 
   render() {
     return (
       <tr>
         <td>{this.props.reminder.description}</td>
-        <td>
-        {/* <input type="checkbox" onChange="" checked={this.props.reminder.status}/> */}
-        </td>
-        <td>{this.props.reminder.creationDate}</td>
+        <td onClick={this.toggleReminder}>{this.props.reminder.status ? "Complete" : "Not Complete"}</td>
+        <td>{this.props.reminder.Created_date}</td>
       </tr>
     );
   }

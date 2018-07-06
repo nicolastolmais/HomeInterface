@@ -8,33 +8,42 @@ class App extends Component {
     super(props);
     this.state = {
       isThin: false,
+      tile: null,
       reminders: null
     }
   }
 
-  switchView = () => {
-    this.setState({ isThin: !this.state.isThin });
+  switchView = (isThin) => {
+    isThin ? this.setState({ isThin: !this.state.isThin }) : null;
+  }
+
+  setTile = (tile) => {
+    this.setState({ tile: tile});
+  }
+
+  addNewReminder = (description) => {
+    fetch('http://localhost:3001/reminders', 
+      {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify({
+        description: description,
+        status: "false"
+      })
+    })
+    .then(response => response.json()) // parses response to JSON
+    .catch(error => console.error(`Fetch Error =\n`, error));
   }
 
   componentDidMount() {
     fetch('http://localhost:3001/reminders')
       .then(response => response.json())
       .then(json => {
-        console.log(json);
+        // console.log(json);
         this.setState({ reminders: json });
-      });
-
-    // fetch('https://mywebsite.com/endpoint/', {
-    //   method: 'POST',
-    //   headers: {
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     firstParam: 'yourValue',
-    //     secondParam: 'yourOtherValue',
-    //   }),
-    // });
+    });
   }
 
   render() {
@@ -45,7 +54,9 @@ class App extends Component {
             switchView={this.switchView}
             reminders={this.state.reminders} /> :
           <Reminders
-            switchView={this.switchView} />
+            switchView={this.switchView}
+            reminders={this.state.reminders}
+            addNewReminder={this.addNewReminder} />
         }
       </div>
     );

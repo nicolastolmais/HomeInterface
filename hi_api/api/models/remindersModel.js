@@ -5,16 +5,14 @@ var Schema = mongoose.Schema;
 
 var ReminderSchema = new Schema({
   description: {
-    type: String,
-    required: 'Kindly enter the name of the task'
+    type: String
   },
   Created_date: {
     type: Date,
     default: Date.now
   },
   status: {
-    type: String,
-    required: 'Kindly enter the status of the task'
+    type: String
   }
 });
 

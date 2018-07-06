@@ -9,68 +9,32 @@ class reminders extends Component {
         this.state = {
             isThin: false,
             isAddingReminder: false,
-            reminderAdded: false
+            reminderAdded: false,
+            newReminder: null
         }
     }
     static propTypes = {
         reminders: object,
-        switchView: func.isRequired
+        switchView: func.isRequired,
+        addNewReminder: func.isRequired
     }
 
-    addingReminder = () => {
-        this.setState({ isAddingReminder: !this.state.isAddingReminder });
+    toggleAddingReminder = () => {
+        this.setState({isAddingReminder: !this.state.isAddingReminder, newReminder: null});
     }
 
-    addReminder = () => {
-        this.state.reminderAdded ?
-            this.setState({ isAddingReminder: !this.state.isAddingReminder }) :
-            null;
-    }
+    handleChange = (event) => {
+        this.setState({newReminder: event.target.value});
+      }
 
-    submitReminder = () => {
-        this.setState({ isAddingReminder: !this.state.isAddingReminder });
-        this.addReminder();
-    }
+    handleSubmit = (event) => {
+        this.props.addNewReminder(this.state.newReminder);
+        alert('A name was submitted: ' + this.state.newReminder);
+        event.preventDefault();
+        this.toggleAddingReminder();
+      }
 
     render() {
-        const reminders = [
-            {
-                id: "1",
-                description: "Do Laundry",
-                status: true,
-                creationDate: "Day1"
-            },
-            {
-                id: "2",
-                description: "Go to store",
-                status: false,
-                creationDate: "Day2"
-            },
-            {
-                id: "3",
-                description: "Do Laundry",
-                status: false,
-                creationDate: "Day1"
-            },
-            {
-                id: "4",
-                description: "",
-                status: false,
-                creationDate: ""
-            },
-            {
-                id: "5",
-                description: "",
-                status: false,
-                creationDate: ""
-            },
-            {
-                id: "6",
-                description: "",
-                status: false,
-                creationDate: ""
-            }
-        ];
         return (
             <div>
                 <table>
@@ -83,7 +47,7 @@ class reminders extends Component {
                     </thead>
                     <tbody>
                         {
-                            Array.isArray(reminders) && reminders.map(reminder =>
+                            Array.isArray(this.props.reminders) && this.props.reminders.map(reminder =>
                                 <ReminderRow
                                     key={reminder.id}
                                     reminder={reminder}
@@ -92,13 +56,13 @@ class reminders extends Component {
                         {this.state.isAddingReminder ?
                             <tr>
                                 <td id="enterDescription" colSpan="2">
-                                    <input type="text" name="description" onChange={this.addReminder} />
+                                    <input type="text" value={this.state.newReminder} onChange={this.handleChange}  />
                                 </td>
                                 <td>
-                                    <button type="button" onClick={this.submitReminder}>Submit</button>
+                                    <button type="button" onClick={this.handleSubmit}>Submit</button>
                                 </td>
                             </tr> :
-                            <tr onClick={this.addingReminder}>
+                            <tr onClick={this.toggleAddingReminder}>
                                 <td id="addReminder" colSpan="3" >Add a reminder</td>
                             </tr>
                         }

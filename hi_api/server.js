@@ -42,7 +42,7 @@ reminderModel.find().exec(function (error, results) {
 });
 
 reminderModel.find({status:false}).exec(function (error, result) {
-  console.log(result);
+  // console.log(result);
 });
 
 reminderModel.update({id: 2}, {description:"Take bath", status:true, creationDate: "Day1"}, {multi: false}, function (error, result) {
@@ -56,10 +56,10 @@ reminderModel.update({id: 2}, {description:"Take bath", status:true, creationDat
 
 reminderModel.remove({id: 4}, function (error, result) {
   if(error) {
-    console.log(error);
+    // console.log(error);
   }
   else{
-    console.log(result);
+    // console.log(result);
   }
 });
 
