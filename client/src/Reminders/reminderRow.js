@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
-import { object } from 'prop-types'
+import { func, object } from 'prop-types'
 import './reminders.css';
 
 class reminderRow extends Component {
   static propTypes = {
-    reminder: object.isRequired
+    reminder: object.isRequired,
+    toggleReminderComplete: func.isRequired
   }
 
   toggleReminder = () => {
+    if (this.props.reminder.status !== "true") {
+      this.props.toggleReminderComplete(this.props.description, this.props.reminder.Created_date)
+    }
   }
-
   render() {
     return (
       <tr>
         <td>{this.props.reminder.description}</td>
-        <td onClick={this.toggleReminder}>{this.props.reminder.status ? "Complete" : "Not Complete"}</td>
+        <td onClick={() => this.toggleReminder()}>{this.props.reminder.status !== 'false' ? 'Complete' : 'Not Complete'}</td>
         <td>{this.props.reminder.Created_date}</td>
       </tr>
     );

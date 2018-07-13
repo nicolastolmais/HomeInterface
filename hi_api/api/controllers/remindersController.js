@@ -13,11 +13,10 @@ exports.list_all_tasks = function (req, res) {
 
 exports.create_a_task = function (req, res) {
   var new_task = new Task(req.body);
-  console.log(req);
   new_task.save(function (err, task) {
-    if (err)
+    if (err) {
       res.send(err);
-    console.log(task);
+    }
     res.json(task);
   });
 };
@@ -33,7 +32,7 @@ exports.read_a_task = function (req, res) {
 
 
 exports.update_a_task = function (req, res) {
-  Task.findOneAndUpdate({ _id: req.params.taskId }, req.body, { new: true }, function (err, task) {
+  Task.findOneAndUpdate({ "Created_date": req.body.Created_date }, req.body, { new: true }, function (err, task) {
     if (err)
       res.send(err);
     res.json(task);

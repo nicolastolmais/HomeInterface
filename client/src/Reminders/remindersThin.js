@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { object, func } from 'prop-types'
+import { array, func } from 'prop-types'
 import ReminderRow from './reminderRow.js';
 import './reminders.css';
 
@@ -8,8 +8,9 @@ class remindersThin extends Component {
     switchView: null
   }
   static propTypes = {
-    reminders: object,
-    switchView: func.isRequired
+    reminders: array,
+    switchView: func.isRequired,
+    toggleReminderComplete: func.isRequired
   }
 
   render() {
@@ -25,10 +26,11 @@ class remindersThin extends Component {
           </thead>
           <tbody>
             {
-              Array.isArray(this.props.reminders) && this.props.reminders.slice(0, 5).map(reminder =>
+              Array.isArray(this.props.reminders) && this.props.reminders.filter(reminder => reminder.status === 'false').slice(this.props.reminders.length-5, this.props.reminders.length).map((reminder, index) =>
                 <ReminderRow
-                  key={reminder.id}
+                  key={reminder + index}
                   reminder={reminder}
+                  toggleReminderComplete={this.props.toggleReminderComplete}
                 />)
             }
           </tbody>

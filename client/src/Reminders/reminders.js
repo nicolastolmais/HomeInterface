@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { object, func } from 'prop-types'
+import { func, array } from 'prop-types'
 import ReminderRow from './reminderRow.js';
 import './reminders.css';
 
@@ -14,25 +14,26 @@ class reminders extends Component {
         }
     }
     static propTypes = {
-        reminders: object,
+        reminders: array,
         switchView: func.isRequired,
-        addNewReminder: func.isRequired
+        addNewReminder: func.isRequired,
+        toggleReminderComplete: func.isRequired
     }
 
     toggleAddingReminder = () => {
-        this.setState({isAddingReminder: !this.state.isAddingReminder, newReminder: null});
+        this.setState({ isAddingReminder: !this.state.isAddingReminder, newReminder: null });
     }
 
     handleChange = (event) => {
-        this.setState({newReminder: event.target.value});
-      }
+        this.setState({ newReminder: event.target.value });
+    }
 
     handleSubmit = (event) => {
         this.props.addNewReminder(this.state.newReminder);
-        alert('A name was submitted: ' + this.state.newReminder);
         event.preventDefault();
         this.toggleAddingReminder();
-      }
+
+    }
 
     render() {
         return (
@@ -47,16 +48,17 @@ class reminders extends Component {
                     </thead>
                     <tbody>
                         {
-                            Array.isArray(this.props.reminders) && this.props.reminders.map(reminder =>
+                            Array.isArray(this.props.reminders) && this.props.reminders.map((reminder, index) =>
                                 <ReminderRow
-                                    key={reminder.id}
+                                    key={reminder + index}
                                     reminder={reminder}
+                                    toggleReminderComplete={this.props.toggleReminderComplete}
                                 />)
                         }
                         {this.state.isAddingReminder ?
                             <tr>
                                 <td id="enterDescription" colSpan="2">
-                                    <input type="text" value={this.state.newReminder} onChange={this.handleChange}  />
+                                    <input type="text" value={this.state.newReminder} onChange={this.handleChange} />
                                 </td>
                                 <td>
                                     <button type="button" onClick={this.handleSubmit}>Submit</button>

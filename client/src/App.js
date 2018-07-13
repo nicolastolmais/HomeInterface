@@ -14,36 +14,60 @@ class App extends Component {
   }
 
   switchView = (isThin) => {
-    isThin ? this.setState({ isThin: !this.state.isThin }) : null;
+    if (isThin) {
+      this.setState({ isThin: !this.state.isThin });
+    }
   }
 
   setTile = (tile) => {
-    this.setState({ tile: tile});
+    this.setState({ tile: tile });
   }
 
   addNewReminder = (description) => {
-    fetch('http://localhost:3001/reminders', 
+    fetch('http://localhost:3001/reminders',
       {
         method: 'POST',
+        mode: 'cors',
         headers: {
           "Content-Type": "application/json; charset=utf-8",
         },
         body: JSON.stringify({
-        description: description,
-        status: "false"
+          description: description,
+          status: "false"
+        })
       })
-    })
-    .then(response => response.json()) // parses response to JSON
-    .catch(error => console.error(`Fetch Error =\n`, error));
+      .then(response => response.json() && this.getReminders()) // parses response to JSON
+      .catch(error => console.error(`Fetch Error =\n`, error));
   }
 
-  componentDidMount() {
+  getReminders = () => {
     fetch('http://localhost:3001/reminders')
       .then(response => response.json())
       .then(json => {
-        // console.log(json);
         this.setState({ reminders: json });
-    });
+      });
+  }
+
+  toggleReminderComplete = (description, Created_date) => {
+    fetch('http://localhost:3001/reminders',
+      {
+        method: 'PUT',
+        mode: 'cors',
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify({
+          description: description,
+          Created_date: Created_date,
+          status: "true"
+        })
+      })
+      .then(response => response.json() && this.getReminders()) // parses response to JSON
+      .catch(error => console.error(`Fetch Error =\n`, error));
+  }
+
+  componentDidMount() {
+    this.getReminders();
   }
 
   render() {
@@ -52,11 +76,13 @@ class App extends Component {
         {this.state.isThin ?
           <ReminderThin
             switchView={this.switchView}
-            reminders={this.state.reminders} /> :
+            reminders={this.state.reminders}
+            toggleReminderComplete={this.toggleReminderComplete} /> :
           <Reminders
             switchView={this.switchView}
             reminders={this.state.reminders}
-            addNewReminder={this.addNewReminder} />
+            addNewReminder={this.addNewReminder}
+            toggleReminderComplete={this.toggleReminderComplete} />
         }
       </div>
     );
