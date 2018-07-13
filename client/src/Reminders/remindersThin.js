@@ -26,7 +26,7 @@ class remindersThin extends Component {
           </thead>
           <tbody>
             {
-              Array.isArray(this.props.reminders) && this.props.reminders.filter(reminder => reminder.status === 'false').slice(this.props.reminders.length-5, this.props.reminders.length).map((reminder, index) =>
+              Array.isArray(this.props.reminders) && this.props.reminders.slice(this.props.reminders.length-5, this.props.reminders.length).filter(reminder => reminder.status === 'false').map((reminder, index) =>
                 <ReminderRow
                   key={reminder + index}
                   reminder={reminder}
