@@ -13,7 +13,8 @@
     "express": "^4.16.3",
     "mongod": "^2.0.0",
     "mongodb": "^3.0.7",
-    "mongoose": "^5.0.17"
+    "mongoose": "^5.0.17",
+    "node-fetch": "^2.1.2"
   },
   "devDependencies": {
     "nodemon": "^1.17.4"

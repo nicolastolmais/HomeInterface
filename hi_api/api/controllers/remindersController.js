@@ -4,6 +4,27 @@
 var mongoose = require('mongoose'),
   Task = mongoose.model('Reminders');
 
+var fetchWeather = require('../mocks/weatherMock')
+var fetchWeatherForcast = require('../mocks/weatherForcastMock')
+
+exports.get_thin_weather = function (req, res) {
+  fetchWeather
+  // .then((weatherData) => weatherData.json)
+  .then((json) => res.send(json))
+};
+
+exports.get_weather_forcast = function (req, res) {
+  fetchWeatherForcast
+  // .then((weatherData) => weatherData.json)
+  .then((json) => res.send(json))
+};
+
+
+//   .then(response => response.json())
+//   .then(json => {
+//     console.log(json);
+//   }).catch((err) => console.log(err));
+
 exports.list_all_tasks = function (req, res) {
   Task.find({}, function (err, task) {
     if (err) { res.send(err); }

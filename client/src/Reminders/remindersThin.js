@@ -3,19 +3,19 @@ import { array, func } from 'prop-types'
 import ReminderRow from './reminderRow.js';
 import './reminders.css';
 
-class remindersThin extends Component {
-  static defaultProps = {
-    switchView: null
-  }
+class RemindersThin extends Component {
   static propTypes = {
     reminders: array,
-    switchView: func.isRequired,
-    toggleReminderComplete: func.isRequired
+    toggleReminderComplete: func.isRequired,
+    switchView: func.isRequired
   }
 
   render() {
     return (
       <div>
+        <div role="button" onClick={() => this.props.switchView('reminders')}>
+          REMINDERS
+        </div>
         <table>
           <thead>
             <tr>
@@ -35,10 +35,9 @@ class remindersThin extends Component {
             }
           </tbody>
         </table>
-        <button type="button" onClick={this.props.switchView}>SwitchView</button>
       </div>
     );
   }
 }
 
-export default remindersThin;
+export default RemindersThin;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { func, object } from 'prop-types'
 import './reminders.css';
 
-class reminderRow extends Component {
+class ReminderRow extends Component {
   static propTypes = {
     reminder: object.isRequired,
     toggleReminderComplete: func.isRequired
@@ -24,4 +24,4 @@ class reminderRow extends Component {
   }
 }
 
-export default reminderRow;
+export default ReminderRow;

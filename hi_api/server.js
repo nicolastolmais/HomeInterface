@@ -2,11 +2,12 @@ var express = require('express'),
   app = express(),
   port = process.env.PORT || 3001,
   mongoose = require('mongoose'),
-  cors = require('cors')
-  
-  require('./api/models/remindersModel') //created model loading here
+  cors = require('cors'),
+  fetch = require('node-fetch')
 
-  
+require('./api/models/remindersModel') //created model loading here
+
+
 //Set up default mongoose connection
 var mongoDB = 'mongodb://localhost/testDb';
 mongoose.connect(mongoDB);
@@ -35,9 +36,11 @@ reminderModel = mongoose.model('reminder', ReminderSchema);
 
 reminderModel.find().exec(function (error, results) {
   if (results.length === 0) {
-    reminderModel.create({ id:1, description:"Be A Boss", status:"true", creationDate: "Day1"  });
+    reminderModel.create({ id: 1, description: "Be A Boss", status: "true", creationDate: "Day1" });
   }
 });
+
+
 app.use(cors())
 
 app.use(express.json());
@@ -48,8 +51,8 @@ routes(app); //register the route
 
 console.log('reminder RESTful API server started on: ' + port);
 
-app.use(function(req, res) {
-    res.status(404).send({url: req.originalUrl + ' not found'})
-  });
+app.use(function (req, res) {
+  res.status(404).send({ url: req.originalUrl + ' not found' })
+});
 
 app.listen(port);

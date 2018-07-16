@@ -3,7 +3,7 @@ import { func, array } from 'prop-types'
 import ReminderRow from './reminderRow.js';
 import './reminders.css';
 
-class reminders extends Component {
+class Reminders extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -70,10 +70,10 @@ class reminders extends Component {
                         }
                     </tbody>
                 </table>
-                <button type="button" onClick={this.props.switchView}>SwitchView</button>
+                <button type="button" onClick={() => this.props.switchView()}>SwitchView</button>
             </div>
         );
     }
 }
 
-export default reminders;
+export default Reminders;
