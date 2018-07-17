@@ -3,7 +3,7 @@ import { func, array } from 'prop-types'
 import ReminderRow from './reminderRow.js';
 import './reminders.css';
 
-class Reminders extends Component {
+class RemindersThicc extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -76,4 +76,4 @@ class Reminders extends Component {
     }
 }
 
-export default Reminders;
+export default RemindersThicc;

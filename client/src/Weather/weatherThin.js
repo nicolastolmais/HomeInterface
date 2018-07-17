@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
-import { Grid, GridCell, GridInner } from 'rmwc/Grid';
+import { Grid, GridCell } from 'rmwc/Grid';
 
 class WeatherThin extends Component {
     static propTypes = {

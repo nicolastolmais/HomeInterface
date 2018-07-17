@@ -1,0 +1,8 @@
+.sideScrollTable {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.sideScrollItem {
+    display: inline-block;
+}

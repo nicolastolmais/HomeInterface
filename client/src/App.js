@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import ReminderThin from './Reminders/remindersThin.js';
-import Reminders from './Reminders/reminders.js';
+import RemindersThicc from './Reminders/remindersThicc.js';
 import WeatherThin from './Weather/weatherThin.js';
-import Weather from './Weather/weather.js';
+import WeatherThicc from './Weather/weatherThicc.js';
 import './App.css';
-import { Grid, GridCell, GridInner } from 'rmwc/Grid';
+import { Grid, GridCell } from 'rmwc/Grid';
 
 class App extends Component {
   constructor(props) {
@@ -91,7 +91,7 @@ class App extends Component {
     switch (this.state.view) {
       case 'reminders': {
         return (
-          <Reminders
+          <RemindersThicc
             reminders={this.state.reminders}
             addNewReminder={this.addNewReminder}
             toggleReminderComplete={this.toggleReminderComplete}
@@ -101,7 +101,7 @@ class App extends Component {
       }
       case 'weather': {
         return (
-          <Weather
+          <WeatherThicc
             weatherThin={this.state.weatherThin}
             weatherForcast={this.state.weatherForcast}
             switchView={this.switchView}

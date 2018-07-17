@@ -4,8 +4,9 @@
   "private": true,
   "dependencies": {
     "fetch": "^1.1.0",
-    "react": "^16.3.2",
+    "react": "^16.4.1",
     "react-dom": "^16.3.2",
+    "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
     "rmwc": "^1.8.1"
   },
