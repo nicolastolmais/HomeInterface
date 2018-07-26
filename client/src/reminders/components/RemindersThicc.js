@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { func, array } from 'prop-types'
-import ReminderRow from './reminderRow.js';
-import './reminders.css';
+import ReminderRow from './ReminderRow.js';
+import '../styles/Reminders.css';
 
 class RemindersThicc extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isThin: false,
             isAddingReminder: false,
             reminderAdded: false,
-            newReminder: null
+            newReminder: ""
         }
     }
     static propTypes = {
@@ -21,7 +20,7 @@ class RemindersThicc extends Component {
     }
 
     toggleAddingReminder = () => {
-        this.setState({ isAddingReminder: !this.state.isAddingReminder, newReminder: null });
+        this.setState({ isAddingReminder: !this.state.isAddingReminder, newReminder: "" });
     }
 
     handleChange = (event) => {

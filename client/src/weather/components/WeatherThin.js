@@ -4,7 +4,7 @@ import { Grid, GridCell } from 'rmwc/Grid';
 
 class WeatherThin extends Component {
     static propTypes = {
-        weatherThin: object
+        weatherDay: object
     }
 
     kelvinToFahrenheit(kelvin) {
@@ -12,7 +12,7 @@ class WeatherThin extends Component {
     }
 
     render() {
-        if (!this.props.weatherThin) {
+        if (!this.props.weatherDay) {
             return null;
         }
         return (
@@ -21,10 +21,10 @@ class WeatherThin extends Component {
                     WEATHER
                 </GridCell>
                 <GridCell span="12">
-                    {this.kelvinToFahrenheit(this.props.weatherThin.main.temp)}
+                    {this.kelvinToFahrenheit(this.props.weatherDay.main.temp)}
                 </GridCell>
                 <GridCell span="12">
-                    <img src={`http://openweathermap.org/img/w/${this.props.weatherThin.weather[0].icon}.png`} alt="weather icon" />
+                    <img src={`http://openweathermap.org/img/w/${this.props.weatherDay.weather[0].icon}.png`} alt="weather icon" />
                 </GridCell>
             </Grid>
         );

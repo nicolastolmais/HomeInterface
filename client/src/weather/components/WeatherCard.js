@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
-import '../Weather/weather.css';
+import '../styles/Weather.css';
 
 class WeatherCard extends Component {
     constructor(props) {
@@ -53,8 +53,6 @@ class WeatherCard extends Component {
                 <div>
                     {this.kelvinToFahrenheit(this.props.weather.main.temp)}
                 </div>
-
-
             </div>
         );
     }

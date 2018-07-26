@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { func, object } from 'prop-types'
-import './reminders.css';
+import '../styles/Reminders.css';
 
 class ReminderRow extends Component {
   static propTypes = {
