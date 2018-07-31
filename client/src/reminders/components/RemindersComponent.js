@@ -3,6 +3,8 @@ import { func, array, string } from 'prop-types'
 import RemindersThin from './RemindersThin.js';
 import RemindersThicc from './RemindersThicc.js';
 import '../styles/Reminders.css';
+import { Grid, GridCell } from 'rmwc/Grid';
+import '../../common/styles/ThinTile.css';
 
 class RemindersComponent extends Component {
     constructor(props) {
@@ -65,22 +67,26 @@ class RemindersComponent extends Component {
         switch (this.props.view) {
             case 'thin': {
                 return (
-                    <RemindersThin
-                        reminders={this.props.reminders}
-                        addNewReminder={this.addNewReminder}
-                        toggleReminderComplete={this.toggleReminderComplete}
-                        switchView={this.props.switchView}
-                    />
+                    <GridCell className="tile" span="4">
+                        <RemindersThin
+                            reminders={this.props.reminders}
+                            addNewReminder={this.addNewReminder}
+                            toggleReminderComplete={this.toggleReminderComplete}
+                            switchView={this.props.switchView}
+                        />
+                    </GridCell>
                 )
             }
             case 'reminders': {
                 return (
-                    <RemindersThicc
-                        reminders={this.props.reminders}
-                        addNewReminder={this.addNewReminder}
-                        toggleReminderComplete={this.toggleReminderComplete}
-                        switchView={this.props.switchView}
-                    />
+                    <GridCell className="tile" span="12">
+                        <RemindersThicc
+                            reminders={this.props.reminders}
+                            addNewReminder={this.addNewReminder}
+                            toggleReminderComplete={this.toggleReminderComplete}
+                            switchView={this.props.switchView}
+                        />
+                    </GridCell>
                 )
             }
             default:

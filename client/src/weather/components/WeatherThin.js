@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
 import { Grid, GridCell } from 'rmwc/Grid';
+import '../styles/Weather.css';
 
 class WeatherThin extends Component {
     static propTypes = {
@@ -18,13 +19,15 @@ class WeatherThin extends Component {
         return (
             <Grid>
                 <GridCell span="12" role="button" onClick={() => this.props.switchView('weather')}>
-                    WEATHER
+                    <h1>
+                        Weather
+                        </h1>
                 </GridCell>
-                <GridCell span="12">
+                <GridCell span="6" className="thinTemperature">
                     {this.kelvinToFahrenheit(this.props.weatherDay.main.temp)}
                 </GridCell>
-                <GridCell span="12">
-                    <img src={`http://openweathermap.org/img/w/${this.props.weatherDay.weather[0].icon}.png`} alt="weather icon" />
+                <GridCell span="6">
+                    <img src={`http://openweathermap.org/img/w/${this.props.weatherDay.weather[0].icon}.png`} alt="weather icon" className="thinIcon" />
                 </GridCell>
             </Grid>
         );

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { func, array } from 'prop-types'
-import ReminderRow from './ReminderRow.js';
+import ReminderRowThicc from './ReminderRowThicc.js';
 import '../styles/Reminders.css';
+import { Grid, GridInner, GridCell } from 'rmwc/Grid';
 
 class RemindersThicc extends Component {
     constructor(props) {
@@ -36,41 +37,47 @@ class RemindersThicc extends Component {
 
     render() {
         return (
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Description</th>
-                            <th>Status</th>
-                            <th>Creation Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            Array.isArray(this.props.reminders) && this.props.reminders.map((reminder, index) =>
-                                <ReminderRow
-                                    key={reminder + index}
-                                    reminder={reminder}
-                                    toggleReminderComplete={this.props.toggleReminderComplete}
-                                />)
-                        }
-                        {this.state.isAddingReminder ?
+            <Grid>
+                <GridCell role="button" onClick={() => this.props.switchView('thin')} span="12">
+                    <h1>Reminders</h1>
+                </GridCell>
+                <GridCell span="12">
+                    <table>
+                        <thead>
                             <tr>
-                                <td id="enterDescription" colSpan="2">
-                                    <input type="text" value={this.state.newReminder} onChange={this.handleChange} />
-                                </td>
-                                <td>
-                                    <button type="button" onClick={this.handleSubmit}>Submit</button>
-                                </td>
-                            </tr> :
-                            <tr onClick={this.toggleAddingReminder}>
-                                <td id="addReminder" colSpan="3" >Add a reminder</td>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Priority</th>
+                                <th>Creation Date</th>
+                                <th>Completed Date</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
-                <button type="button" onClick={() => this.props.switchView()}>SwitchView</button>
-            </div>
+                        </thead>
+                        <tbody>
+                            {
+                                Array.isArray(this.props.reminders) && this.props.reminders.map((reminder, index) =>
+                                    <ReminderRowThicc
+                                        key={reminder + index}
+                                        reminder={reminder}
+                                        toggleReminderComplete={this.props.toggleReminderComplete}
+                                    />)
+                            }
+                            {this.state.isAddingReminder ?
+                                <tr>
+                                    <td id="enterDescription" colSpan="2">
+                                        <input type="text" value={this.state.newReminder} onChange={this.handleChange} />
+                                    </td>
+                                    <td>
+                                        <button type="button" onClick={this.handleSubmit}>Submit</button>
+                                    </td>
+                                </tr> :
+                                <tr onClick={this.toggleAddingReminder}>
+                                    <td id="addReminder" colSpan="5" >Add a reminder</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </GridCell>
+            </Grid>
         );
     }
 }

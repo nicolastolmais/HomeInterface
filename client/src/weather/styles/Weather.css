@@ -6,3 +6,16 @@
 .sideScrollItem {
     display: inline-block;
 }
+
+.thinTemperature {
+    font-size: 150px;
+    text-align: center;
+}
+
+.thinIcon {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 200px;
+    width: 200px;
+}

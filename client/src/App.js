@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import RemindersContainer from './reminders/RemindersContainer';
 import WeatherContainer from './weather/WeatherContainer';
+import TimeContainer from './time/TimeContainer';
+import { Grid, GridCell } from 'rmwc/Grid';
+import './common/styles/ThinTile.css';
 
 class App extends Component {
   constructor(props) {
@@ -69,10 +72,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <Grid>
+        <TimeContainer />
         <RemindersContainer />
         <WeatherContainer />
-      </div>
+      </Grid>
     )
   }
 }

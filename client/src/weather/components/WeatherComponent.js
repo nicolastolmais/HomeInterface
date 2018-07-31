@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { object, func, string } from 'prop-types';
+import { object, string } from 'prop-types';
 import '../styles/Weather.css';
 import WeatherThin from './WeatherThin.js';
 import WeatherThicc from './WeatherThicc.js';
+import { Grid, GridInner, GridCell } from 'rmwc/Grid';
+import '../../common/styles/ThinTile.css';
 
 class WeatherComponent extends Component {
     constructor(props) {
@@ -36,22 +38,25 @@ class WeatherComponent extends Component {
             case 'thin': {
                 return (
                     this.props.weatherDay ?
-                        <WeatherThin
-                            weatherDay={this.props.weatherDay}
-                            weatherWeek={this.props.weatherWeek}
-                            switchView={this.props.switchView}
-                        /> : null
+                        <GridCell className="tile" span="4">
+                            <WeatherThin
+                                weatherDay={this.props.weatherDay}
+                                weatherWeek={this.props.weatherWeek}
+                                switchView={this.props.switchView}
+                            />
+                        </GridCell> : null
                 )
             }
             case 'weather': {
                 return (
                     this.props.weatherDay && this.props.weatherWeek ?
-                        <WeatherThicc
-                            weatherDay={this.props.weatherDay}
-                            weatherWeek={this.props.weatherWeek}
-                            switchView={this.props.switchView}
-                        />
-                        : null
+                        <GridCell className="tile" span="12">
+                            <WeatherThicc
+                                weatherDay={this.props.weatherDay}
+                                weatherWeek={this.props.weatherWeek}
+                                switchView={this.props.switchView}
+                            />
+                        </GridCell> : null
                 )
             }
             default:
