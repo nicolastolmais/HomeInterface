@@ -3,6 +3,7 @@ import { object, func } from 'prop-types';
 import { Grid, GridInner, GridCell } from 'rmwc/Grid';
 import WeatherCard from './WeatherCard.js';
 import '../styles/Weather.css';
+import moment from 'moment';
 
 class WeatherThicc extends Component {
     static propTypes = {
@@ -13,6 +14,18 @@ class WeatherThicc extends Component {
 
     kelvinToFahrenheit(kelvin) {
         return Math.round((9 / 5) * (kelvin - 273) + 32);
+    }
+
+
+
+    splitArray(array) {
+        return array.reduce((acc, cur) => {
+            const key = moment(cur.dt_txt).format('YYYYMMDD')
+            return {
+                ...acc,
+                [key]: acc[key] ? [...acc[key], cur] : [cur] 
+            }
+        }, {})
     }
 
     render() {
@@ -61,15 +74,15 @@ class WeatherThicc extends Component {
                     </GridCell>
                     <GridCell span="6">
                         <div>
-                            map will go here
+                            Map here
                         </div>
                     </GridCell>
                     <GridCell span="12">
                         <div className="sideScrollTable">
-                            {this.props.weatherWeek.list.map((forcast, index) =>
+                            {Object.values(this.splitArray(this.props.weatherWeek.list)).map((forcast, index) =>
                                 <WeatherCard
                                     key={index}
-                                    weather={forcast}
+                                    weatherUpcomingDay={forcast}
                                 />
                             )}
                         </div>

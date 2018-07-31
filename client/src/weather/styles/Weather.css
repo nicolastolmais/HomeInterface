@@ -5,6 +5,8 @@
 
 .sideScrollItem {
     display: inline-block;
+    border-style: solid;
+    width: 400px;
 }
 
 .thinTemperature {

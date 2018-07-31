@@ -13,13 +13,11 @@ class RemindersThin extends Component {
   }
 
   render() {
-    const ONE_DAY = 60*60*1000*24;
+    const ONE_DAY = 1000 * 60 * 60 * 24;
     return (
       <Grid>
         <GridCell role="button" onClick={() => this.props.switchView('reminders')} span="12">
-          <h1>
-            Reminders
-                        </h1>
+          <h1>Reminders</h1>
         </GridCell>
         <GridCell span="12">
           <table>
@@ -33,15 +31,16 @@ class RemindersThin extends Component {
             <tbody>
               {
                 Array.isArray(this.props.reminders) && this.props.reminders
-                .slice(this.props.reminders.length - 5, this.props.reminders.length)
-                .filter(reminder => reminder.status === 'false')
-                
-                .map((reminder, index) =>
-                  <ReminderRow
-                    key={reminder + index}
-                    reminder={reminder}
-                    toggleReminderComplete={this.props.toggleReminderComplete}
-                  />)
+                  .sort(function (x, y) { return (x.Created_date === y.Created_date) ? 0 : x.Created_date > y.Created_date ? -1 : 1 })
+                  .sort(function (x, y) { return (x.status === y.status) ? 0 : x.status ? -1 : 1 })
+                  .filter(reminder => reminder.status === 'false' || Date.now() - Date.parse(reminder.Created_date) < ONE_DAY)
+                  .map((reminder, index) =>
+                    index < 5 ?
+                      <ReminderRow
+                        key={reminder + index}
+                        reminder={reminder}
+                        toggleReminderComplete={this.props.toggleReminderComplete}
+                      /> : null)
               }
             </tbody>
           </table>
