@@ -6,24 +6,25 @@ var mongoose = require('mongoose'),
 
 var fetchWeather = require('../mocks/weatherMock')
 var fetchWeatherForcast = require('../mocks/weatherForcastMock')
+var fetchRecipeRandom = require('../mocks/recipeRandomMock')
 
 exports.get_thin_weather = function (req, res) {
   fetchWeather
   // .then((weatherData) => weatherData.json)
   .then((json) => res.send(json))
-};
+}
 
 exports.get_weather_forcast = function (req, res) {
   fetchWeatherForcast
   // .then((weatherData) => weatherData.json)
   .then((json) => res.send(json))
-};
+}
 
-
-//   .then(response => response.json())
-//   .then(json => {
-//     console.log(json);
-//   }).catch((err) => console.log(err));
+exports.get_random_recipe = function (req, res) {
+  fetchRecipeRandom
+  // .then((weatherData) => weatherData.json)
+  .then((json) => res.send(json))
+}
 
 exports.list_all_tasks = function (req, res) {
   Task.find({}, function (err, task) {
@@ -62,8 +63,6 @@ exports.update_a_task = function (req, res) {
 
 
 exports.delete_a_task = function (req, res) {
-
-
   Task.remove({
     _id: req.params.taskId
   }, function (err, task) {

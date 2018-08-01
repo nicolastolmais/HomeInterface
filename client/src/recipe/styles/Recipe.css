@@ -1,0 +1,28 @@
+.recipeTile {
+    position: relative;
+}
+
+.recipeTile > img {
+    height: 445px;
+    width: 100%;
+}
+
+/* Bottom left text */
+.bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-size: 35px;
+    color: #000000;
+    background: #36F736; 
+}
+
+/* Top left text */
+.top-left {
+    position: absolute;
+    left: 16px;
+    top: 8px;
+    font-size: 35px;
+    color: #000000;
+    background: #36F736; 
+}

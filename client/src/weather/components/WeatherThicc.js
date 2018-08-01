@@ -16,16 +16,37 @@ class WeatherThicc extends Component {
         return Math.round((9 / 5) * (kelvin - 273) + 32);
     }
 
-
-
     splitArray(array) {
         return array.reduce((acc, cur) => {
             const key = moment(cur.dt_txt).format('YYYYMMDD')
             return {
                 ...acc,
-                [key]: acc[key] ? [...acc[key], cur] : [cur] 
+                [key]: acc[key] ? [...acc[key], cur] : [cur]
             }
         }, {})
+    }
+
+    windDirection(degree) {
+        switch (true) {
+            case (67 <= degree && degree <= 113):
+                return "E";
+            case (23 < degree && degree < 67):
+                return "NE";
+            case (327 <= degree && degree <= 360 || 0 <= degree && degree <= 23):
+                return "N";
+            case (293 < degree && degree < 327):
+                return "NW";
+            case (247 <= degree && degree <= 293):
+                return "W";
+            case (203 < degree && degree < 247):
+                return "SW";
+            case (157 <= degree && degree <= 203):
+                return "S";
+            case (113 < degree && degree < 157):
+                return "SE";
+            default:
+                null;
+        }
     }
 
     render() {
@@ -56,19 +77,19 @@ class WeatherThicc extends Component {
                                 humditiy: {this.props.weatherDay.main.humidity}
                             </GridCell>
                             <GridCell span="12">
-                                H / {this.props.weatherDay.main.temp_min}
+                                H / {this.kelvinToFahrenheit(this.props.weatherDay.main.temp_min)}
                             </GridCell>
                             <GridCell span="12">
-                                L / {this.props.weatherDay.main.temp_max}
+                                L / {this.kelvinToFahrenheit(this.props.weatherDay.main.temp_max)}
                             </GridCell>
                             <GridCell span="12">
-                                clouds {this.props.weatherDay.clouds.all}
+                                clouds {this.props.weatherDay.clouds.all} %
                             </GridCell>
                             <GridCell span="12">
-                                wind speed: {this.props.weatherDay.wind.speed}
+                                wind speed: {this.props.weatherDay.wind.speed} m/h
                             </GridCell>
                             <GridCell span="12">
-                                wind degree: {this.props.weatherDay.wind.deg}
+                                wind degree: {this.windDirection(this.props.weatherDay.wind.deg)}
                             </GridCell>
                         </GridInner>
                     </GridCell>

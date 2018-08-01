@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import * as weatherActions from './actions/WeatherActions.js'
 import * as commonActions from '../common/actions/CommonActions.js'
 import WeatherComponent from './components/WeatherComponent.js';
-import {bindActionCreators} from 'redux'
+import { bindActionCreators } from 'redux'
 
 const mapStateToProp = state => ({
     view: state.View,
