@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { array } from 'prop-types';
 import '../styles/Weather.css';
 import moment from 'moment';
-import { Grid, GridCell } from '../../../node_modules/rmwc';
+import { Grid, GridCell } from 'rmwc';
 
 class WeatherCard extends Component {
     constructor(props) {

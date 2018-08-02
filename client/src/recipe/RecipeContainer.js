@@ -4,7 +4,6 @@ import * as commonActions from '../common/actions/CommonActions.js'
 import RecipeComponent from './components/RecipeComponent.js';
 import { bindActionCreators } from 'redux'
 
-
 const mapStateToProp = state => ({
     view: state.View,
     recipe: state.Recipe,

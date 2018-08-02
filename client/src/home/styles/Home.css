@@ -1,0 +1,15 @@
+.dropdown {
+    font-size: 20px;
+    -webkit-appearance: none;
+    border: 10px;
+    width: 100%;box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    padding: 100px 0;
+    text-align-last: center;
+  }
+
+.homeTile {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    text-align: center;
+    width: 100%;
+    padding: 100px 0;
+}

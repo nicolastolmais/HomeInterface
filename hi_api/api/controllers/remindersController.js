@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
 var fetchWeather = require('../mocks/weatherMock')
 var fetchWeatherForcast = require('../mocks/weatherForcastMock')
 var fetchRecipeRandom = require('../mocks/recipeRandomMock')
+var fetchCameraFeeds = require('../mocks/cameraMock')
 
 exports.get_thin_weather = function (req, res) {
   fetchWeather
@@ -22,6 +23,12 @@ exports.get_weather_forcast = function (req, res) {
 
 exports.get_random_recipe = function (req, res) {
   fetchRecipeRandom
+  // .then((weatherData) => weatherData.json)
+  .then((json) => res.send(json))
+}
+
+exports.get_camera_feeds = function (req, res) {
+  fetchCameraFeeds
   // .then((weatherData) => weatherData.json)
   .then((json) => res.send(json))
 }

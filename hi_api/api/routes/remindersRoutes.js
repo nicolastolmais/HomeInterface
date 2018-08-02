@@ -17,6 +17,9 @@ module.exports = function (app) {
   app.route('/recipe')
     .get(todoList.get_random_recipe);
 
+  app.route('/cameras')
+    .get(todoList.get_camera_feeds);
+
   app.route('/reminders/:taskId')
     .get(todoList.read_a_task)
     .delete(todoList.delete_a_task);
