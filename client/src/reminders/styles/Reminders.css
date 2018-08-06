@@ -52,3 +52,7 @@ tr td:hover {
     background:#FFF; 
     color: #111; 
 }
+
+.prioritySelected {
+    background:#dc1f7d
+}

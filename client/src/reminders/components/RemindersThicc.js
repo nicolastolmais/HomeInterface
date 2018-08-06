@@ -10,7 +10,8 @@ class RemindersThicc extends Component {
         this.state = {
             isAddingReminder: false,
             reminderAdded: false,
-            newReminder: ""
+            newReminder: "",
+            priority: 1
         }
     }
     static propTypes = {
@@ -21,15 +22,21 @@ class RemindersThicc extends Component {
     }
 
     toggleAddingReminder = () => {
-        this.setState({ isAddingReminder: !this.state.isAddingReminder, newReminder: "" });
+        this.setState({ isAddingReminder: !this.state.isAddingReminder, newReminder: "", priority: 1 });
     }
 
     handleChange = (event) => {
         this.setState({ newReminder: event.target.value });
     }
 
+    handlePriority = (priority) => {
+        this.setState({ priority });
+    }
+
     handleSubmit = (event) => {
-        this.props.addNewReminder(this.state.newReminder);
+        if (this.state.newReminder !== "") {
+            this.props.addNewReminder(this.state.newReminder, this.state.priority);
+        }
         event.preventDefault();
         this.toggleAddingReminder();
     }
@@ -55,8 +62,9 @@ class RemindersThicc extends Component {
                         <tbody>
                             {
                                 Array.isArray(this.props.reminders) && this.props.reminders
-                                    .sort(function (x, y) { return (x.Created_date === y.Created_date) ? 0 : x.Created_date > y.Created_date ? -1 : 1 })
-                                    .sort(function (x, y) { return (x.status === y.status) ? 0 : x.status ? -1 : 1 })
+                                    .sort(function (x, y) { return (x.priority === y.priority) ? 0 : x.priority > y.priority ? -1 : 1 })
+                                    .sort(function (x, y) { return (x.completedDate === y.completedDate) ? 0 : x.completedDate > y.completedDate ? -1 : 1 })
+                                    .sort(function (x, y) { return (x.status === y.status) ? 0 : x.status ? 1 : -1 })
                                     .filter(reminder => Date.now() - Date.parse(reminder.Created_date) < ONE_WEEK)
                                     .map((reminder, index) =>
                                         <ReminderRowThicc
@@ -69,6 +77,11 @@ class RemindersThicc extends Component {
                                 <tr>
                                     <td id="enterDescription" colSpan="2">
                                         <input type="text" value={this.state.newReminder} onChange={this.handleChange} />
+                                    </td>
+                                    <td id="enterPriority" colSpan="1">
+                                        <button className={this.state.priority === 1 ? "prioritySelected" : null} type="button" onClick={() => this.handlePriority(1)}>1</button>
+                                        <button className={this.state.priority === 2 ? "prioritySelected" : null} type="button" onClick={() => this.handlePriority(2)}>2</button>
+                                        <button className={this.state.priority === 3 ? "prioritySelected" : null} type="button" onClick={() => this.handlePriority(3)}>3</button>
                                     </td>
                                     <td>
                                         <button type="button" onClick={this.handleSubmit}>Submit</button>

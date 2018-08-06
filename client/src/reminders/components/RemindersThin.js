@@ -25,13 +25,12 @@ class RemindersThin extends Component {
               <tr>
                 <th>Description</th>
                 <th>Status</th>
-                <th>Creation Date</th>
               </tr>
             </thead>
             <tbody>
               {
                 Array.isArray(this.props.reminders) && this.props.reminders
-                  .sort(function (x, y) { return (x.Created_date === y.Created_date) ? 0 : x.Created_date > y.Created_date ? -1 : 1 })
+                  .sort(function (x, y) { return (x.completedDate === y.completedDate) ? 0 : x.completedDate > y.completedDate ? -1 : 1 })
                   .sort(function (x, y) { return (x.status === y.status) ? 0 : x.status ? -1 : 1 })
                   .filter(reminder => reminder.status === 'false' || Date.now() - Date.parse(reminder.Created_date) < ONE_DAY)
                   .map((reminder, index) =>

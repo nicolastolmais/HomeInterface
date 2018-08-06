@@ -18,7 +18,6 @@ class ReminderRow extends Component {
       <tr>
         <td>{this.props.reminder.description}</td>
         <td onClick={() => this.toggleReminder()}>{this.props.reminder.status !== 'false' ? 'Complete' : 'Not Complete'}</td>
-        <td>{this.props.reminder.Created_date}</td>
       </tr>
     );
   }

@@ -18,9 +18,9 @@ class ReminderRowThicc extends Component {
       <tr>
         <td>{this.props.reminder.description}</td>
         <td onClick={() => this.toggleReminder()}>{this.props.reminder.status !== 'false' ? 'Complete' : 'Not Complete'}</td>
-        <td>{this.props.reminder.Priority}</td>
+        <td>{this.props.reminder.priority}</td>
         <td>{this.props.reminder.Created_date}</td>
-        <td>{this.props.reminder.Completed_date}</td>
+        <td>{this.props.reminder.completedDate}</td>
       </tr>
     );
   }

@@ -13,7 +13,13 @@ var ReminderSchema = new Schema({
   },
   status: {
     type: String
-  }
+  },
+  priority: {
+    type: String
+  },
+  completedDate: {
+    type: Date
+  },
 });
 
 module.exports = mongoose.model('Reminders', ReminderSchema);

@@ -28,7 +28,7 @@ class RemindersComponent extends Component {
             })
     }
 
-    addNewReminder = (description) => {
+    addNewReminder = (description, priority) => {
         fetch('http://localhost:3001/reminders',
             {
                 method: 'POST',
@@ -38,7 +38,8 @@ class RemindersComponent extends Component {
                 },
                 body: JSON.stringify({
                     description: description,
-                    status: "false"
+                    status: "false",
+                    priority: priority
                 })
             })
             .then(response => response.json() && this.getRemindersData())
@@ -56,7 +57,8 @@ class RemindersComponent extends Component {
                 body: JSON.stringify({
                     description: description,
                     Created_date: Created_date,
-                    status: "true"
+                    status: "true",
+                    completedDate: Date.now()
                 })
             })
             .then(response => response.json() && this.getRemindersData())

@@ -70,11 +70,13 @@ class HomeThicc extends Component {
                     </GridInner>
                 </GridCell>
                 <GridCell span="6">
-                    <GridCell span="2">
-                        <div className="homeTile" role="button" onClick={() => this.props.switchView('thin')}>
-                            Here will be the list of buttons for by group clicked on the left
+                    <GridInner>
+                        <GridCell span="4">
+                            <div className="homeTile" role="button" onClick={() => this.props.switchView('thin')}>
+                                LIght 1
                     </div>
-                    </GridCell>
+                        </GridCell>
+                    </GridInner>
                 </GridCell>
             </Grid>
         )
