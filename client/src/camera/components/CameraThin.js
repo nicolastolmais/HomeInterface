@@ -30,12 +30,16 @@ class CameraThin extends Component {
 
     render() {
         return (
-            <div className="cameraTile" role="button" onClick={() => this.props.switchView('camera')}>
-                {/* <iframe src={this.props.cameras[this.state.curCamera]} height="400px" width="100%" >
-                    <p>Your browser does not support iframes.</p>
-                </iframe> */}
-                <div className="top-left"> Cameras</div>
-            </div>
+            <Grid>
+                <GridCell span="12" role="button" onClick={() => this.props.switchView('camera')}>
+                    <h1>Cameras</h1>
+                </GridCell>
+                <GridCell className="cameraTile" span="12">
+                    <iframe src={this.props.cameras[this.state.curCamera]}>
+                        <p>Your browser does not support iframes.</p>
+                    </iframe>
+                </GridCell>
+            </Grid>
         );
     }
 }

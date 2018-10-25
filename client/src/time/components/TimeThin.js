@@ -32,7 +32,7 @@ class TimeThin extends Component {
             case 'Tue':
                 return 'Tuesday'
             case 'Wed':
-                return 'WednesDay'
+                return 'Wednesday'
             case 'Thu':
                 return 'Thursday'
             case 'Fri':

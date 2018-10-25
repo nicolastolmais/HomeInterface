@@ -13,11 +13,17 @@ class RecipeThin extends Component {
             return null;
         }
         return (
-            <div className="recipeTile" role="button" onClick={() => this.props.switchView('recipe')}>
+            <Grid>
+            <GridCell span="12" role="button" onClick={() => this.props.switchView('recipe')}>
+                <h1>Recipe</h1>
+            </GridCell>
+            <GridCell className="recipeTile" span="6">
+                {this.props.recipe.hits[0].recipe.label}
+            </GridCell>
+            <GridCell className="recipeTile" span="6">
                 <img src={this.props.recipe.hits[0].recipe.image} alt={this.props.recipe.hits[0].recipe.label} />
-                <div className="top-left"> Recipe</div>
-                <div className="bottom-left">{this.props.recipe.hits[0].recipe.label}</div>
-            </div>
+            </GridCell>
+            </Grid>
         );
     }
 }

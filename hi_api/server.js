@@ -26,7 +26,9 @@ weatherRoutes(app);
 var cameraRoutes = require('./src/routes/cameraRoutes'); 
 cameraRoutes(app); 
 var recipeRoutes = require('./src/routes/recipeRoutes');
-recipeRoutes(app); 
+recipeRoutes(app);
+var homeRoutes = require('./src/routes/homeRoutes');
+homeRoutes(app); 
 
 console.log('reminder RESTful API server started on: ' + port);
 

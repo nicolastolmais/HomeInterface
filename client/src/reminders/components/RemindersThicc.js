@@ -41,14 +41,20 @@ class RemindersThicc extends Component {
         this.toggleAddingReminder();
     }
 
+    handleQuickSubmit = (reminder) => {
+        this.props.addNewReminder(reminder, 1);
+
+    }
+
+
     render() {
-        const ONE_WEEK = 1000 * 60 * 60 * 24 * 7;
+        const TWO_DAYS = 1000 * 60 * 60 * 24 * 2;
         return (
             <Grid>
                 <GridCell role="button" onClick={() => this.props.switchView('thin')} span="12">
                     <h1>Reminders</h1>
                 </GridCell>
-                <GridCell span="12">
+                <GridCell span="8">
                     <table>
                         <thead>
                             <tr>
@@ -65,7 +71,7 @@ class RemindersThicc extends Component {
                                     .sort(function (x, y) { return (x.priority === y.priority) ? 0 : x.priority > y.priority ? -1 : 1 })
                                     .sort(function (x, y) { return (x.completedDate === y.completedDate) ? 0 : x.completedDate > y.completedDate ? -1 : 1 })
                                     .sort(function (x, y) { return (x.status === y.status) ? 0 : x.status ? 1 : -1 })
-                                    .filter(reminder => Date.now() - Date.parse(reminder.Created_date) < ONE_WEEK)
+                                    .filter(reminder => Date.now() - Date.parse(reminder.completedDate) < TWO_DAYS || reminder.status === 'false')
                                     .map((reminder, index) =>
                                         <ReminderRowThicc
                                             key={reminder + index}
@@ -93,6 +99,30 @@ class RemindersThicc extends Component {
                             }
                         </tbody>
                     </table>
+                </GridCell>
+                <GridCell span="4">
+                    <GridInner>
+                        <GridCell span="6">
+                            <div className="remindersTile" role="button" onClick={() => this.handleQuickSubmit('Laundry')}>
+                                Laundry
+                            </div>
+                        </GridCell>
+                        <GridCell span="6">
+                            <div className="remindersTile" role="button" onClick={() => this.handleQuickSubmit('Pay Bills')}>
+                                Pay Bills
+                            </div>
+                        </GridCell>
+                        <GridCell span="6">
+                            <div className="remindersTile" role="button" onClick={() => this.handleQuickSubmit('Clean House')}>
+                                Clean House
+                            </div>
+                        </GridCell>
+                        <GridCell span="6">
+                            <div className="remindersTile" role="button" onClick={() => this.handleQuickSubmit('Work on Project')}>
+                                Learn
+                            </div>
+                        </GridCell>
+                    </GridInner>
                 </GridCell>
             </Grid>
         );

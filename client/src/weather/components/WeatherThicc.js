@@ -77,10 +77,10 @@ class WeatherThicc extends Component {
                                 humditiy: {this.props.weatherDay.main.humidity}
                             </GridCell>
                             <GridCell span="12">
-                                H / {this.kelvinToFahrenheit(this.props.weatherDay.main.temp_min)}
+                                H / {this.kelvinToFahrenheit(this.props.weatherDay.main.temp_max)}
                             </GridCell>
                             <GridCell span="12">
-                                L / {this.kelvinToFahrenheit(this.props.weatherDay.main.temp_max)}
+                                L / {this.kelvinToFahrenheit(this.props.weatherDay.main.temp_min)}
                             </GridCell>
                             <GridCell span="12">
                                 clouds {this.props.weatherDay.clouds.all} %

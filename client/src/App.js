@@ -16,7 +16,7 @@ class App extends Component {
 
   render() {
     return (
-      <Grid>
+      <Grid className="app-background">
         <TimeContainer />
         <RemindersContainer />
         <WeatherContainer />

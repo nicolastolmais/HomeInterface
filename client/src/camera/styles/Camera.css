@@ -1,9 +1,10 @@
 .cameraTile {
     position: relative;
+    background-color: #EDF2F4;
 }
 
 .cameraTile > iframe {
-    height: 445px;
+    height: 300px;
     width: 100%;
 }
 
@@ -14,7 +15,7 @@
     left: 16px;
     font-size: 35px;
     color: #000000;
-    background: #36F736; 
+    background: #EF233C; 
 }
 
 /* Top left text */
@@ -24,6 +25,6 @@
     top: 8px;
     font-size: 35px;
     color: #000000;
-    background: #36F736; 
+    background: #EF233C; 
 }
 

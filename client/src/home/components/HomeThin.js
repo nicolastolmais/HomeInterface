@@ -21,8 +21,17 @@ class HomeThin extends Component {
                 <GridCell span="12" role="button" onClick={() => this.props.switchView('home')}>
                     <h1>Home</h1>
                 </GridCell>
-                <GridCell span="12">
-                    Profile
+                <GridCell className="homeThinTile" span="6">
+                    Scene: {this.props.selectedScene}
+                </GridCell>
+                <GridCell className="homeThinTile" span="6">
+                    Nest temp
+                </GridCell>
+                <GridCell className="homeThinTile" span="6">
+                    -
+                </GridCell>
+                <GridCell className="homeThinTile" span="6">
+                    -
                 </GridCell>
             </Grid>
         );

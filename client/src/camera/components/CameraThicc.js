@@ -19,9 +19,9 @@ class CameraThicc extends Component {
                     Array.isArray(this.props.cameras) && this.props.cameras
                         .map((camera) =>
                             <GridCell span="4">
-                                {/* <iframe src={camera} height="350px" width="100%" >
+                                <iframe src={camera} height="350px" width="100%" >
                                     <p>Your browser does not support iframes.</p>
-                                </iframe> */}
+                                </iframe>
                             </GridCell>
                         )
                 }
